@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Udostępnij post{% endblock %}
+
+{% block content %}
+  {% if sent %}
+    <p  class="alert alert-success m-2" role="alert">E-mail pomyślnie wysłano</p>
+    <p class="text-light m-2">
+      "{{ post.title }}" pomyślnie wysłano do {{ form.cleaned_data.to }}.
+    </p>
+  {% else %}
+    <p class="title m-3 me-3 text-light rounded-3 p-1 h1">Udostępnij "{{ post.title }}" przez e-mail</p>
+    <form method="post" class="text-white m-3 d-table" >
+      <div class="mb-3">
+      {% csrf_token %}
+      <div>
+          <label for="exampleInputEmail1" class="form-label">imię </label><br>
+          <div class="w-50">{{ form.name }}</div>
+      </div>
+      <div>
+          <label for="exampleInputEmail1" class="form-label">email </label><br>
+          {{ form.email }}
+      </div>
+      <div>
+          <labelor="exampleInputEmail1" class="form-label" f>email osoby do kórej chcesz wysłać:</labelor=><br>
+          <input type="email" name="to" required="" id="id_to">
+      </div>
+      <div>
+          <label for="exampleInputEmail1" class="form-label">komentarz do posta</label><br>
+          {{ form.comments }}
+      </div>
+      <input type="submit" value="Wyślij e-mail" class="btn btn-outline-light mt-1">
+    </div>
+    </form>
+  {% endif %}
+{% endblock %}

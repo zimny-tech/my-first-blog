@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <div class="title m-3  text-light rounded-3 p-1  ms-auto me-auto"><p class="h1 m-2">{{ post.title }}</p></div>
+  <div>
+  <p class="m-2 text-muted dejta ms-auto me-auto ">
+    Opublikowany {{ post.publish }} przez {{ post.author }}
+    <a href="{% url 'blog:post_share' post.id %}">
+      Udostępnij ten post
+    </a>
+  </p>
+</div>
+  <div class="m-2 restex ms-auto me-auto post rounded-3 ">
+  <div class="m-3 pad6g6 lh-sm">{{ post.body|markdown }}</div>
+ </div>
+ <div class=" bg-dark title m-3 text-light rounded-3 p-1  ms-auto me-auto">
+ <div>
+ <h2>Podobne posty</h2>
+ {% for post in similar_posts %}
+   <p>
+     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+   </p>
+ {% empty %}
+   Nie ma jeszcze podobnych postów
+ {% endfor %}
+ {% with comments.count as total_comments %}
+ <h2>
+   Liczba komentarzy: {{ total_comments }} 
+ </h2>
+{% endwith %}
+{% for comment in comments %}
+<div class="card text-light mt-2" style="background-color: rgb(37, 37, 37);">
+  <div class="card-header text-muted">
+     <p class="card-text">Komentarz napisany przez {{ comment.name }}
+     {{ comment.created }}</p>
+    </div>
+ <div class="card-body">
+   {{ comment.body|linebreaks }}
+</div>
+</div>
+{% empty %}
+ <p>Brak komentarzy.</p>
+{% endfor %}
+{% if new_comment %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>twój komentarz został dodany</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+ <form method="post">
+  {% csrf_token %}
+  <label for="id_name">Name:</label><br> <input type="text" name="name" maxlength="80" required="" id="id_name"><br>
+  <label for="id_email">Email:</label><br> <input type="email" name="email" maxlength="254" required="" id="id_email"><br>
+  <label for="id_body">Body:</label><br> <textarea name="body" cols="40" rows="10" required="" id="id_body"></textarea><br>
+  <input type="submit" value="Opublikuj" class="btn btn-outline-light mt-1">
+</form>
+</div>
+{% else %}
+ <h2>Dodaj nowy komentarz</h2>
+ <form method="post">
+  {% csrf_token %}
+  <label for="id_name">Name:</label><br> <input type="text" name="name" maxlength="80" required="" id="id_name"><br>
+  <label for="id_email">Email:</label><br> <input type="email" name="email" maxlength="254" required="" id="id_email"><br>
+  <label for="id_body">Body:</label><br> <textarea name="body" cols="40" rows="10" required="" id="id_body"></textarea><br>
+  <input type="submit" value="Opublikuj" class="btn btn-outline-light mt-1">
+</form>
+</div>
+{% endif %}
+{% endblock %}

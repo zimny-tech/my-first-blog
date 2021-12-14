@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+
+{% block title %}Blog Frania{% endblock %}
+
+{% block content %}
+<div class="bok nmv fontp">
+  <h3>"O NAS"</h3>
+  <p>"najlepszy blog" ~~ czarson</p>
+  <p>non nisi est sit amet facilisis magna etiam tempor orci eu lobortis elementum nibh tellus molestie nunc non blandit massa enim nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus risus at ultrices</p>
+</div>
+<div class="posty">
+  <div class="title m-3 me-3 text-light rounded-3 p-1"><p class="h1 mx-3">Blog Frania</p></div>
+  {% for post in posts %}
+  <div class="card mb-3 mx-3 carc ok90">
+    <p class="card-title h2 m-3">
+      <a class="text-decoration-none tipo" href="{{ post.get_absolute_url }}">
+        {{ post.title }}
+      </a>
+    </p>
+    <div class="m-3 fontp">
+    <p class="card-text ">{{ post.body|markdown|truncatewords_html:40 }}</p>
+    </div>
+    <p class="ms-3">
+      Tagi:
+      {% for tag in post.tags.all %}
+        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+          {{ tag.name }}
+        </a>
+        {% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+
+    <div class="card-footer text-muted">
+    <p>
+      Opublikowany {{ post.publish | date:"d/m/Y" }} {{ post.publish | time:"H:i" }} przez {{ post.author }}
+    </p>
+  </div>
+  </div>
+  {% endfor %}
+   {% include "pagination.html" with page=posts %}
+  </div>
+{% endblock %}

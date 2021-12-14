@@ -1,0 +1,105 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+.bok{
+    float: right;
+    width: 30%;
+    padding:10px;
+    margin: 10px;
+    background-color:#9bc8e2; 
+    height:100%;
+    border-radius: 3px;
+}
+.posty{
+    width: 60%;
+}
+.post{
+    background-color: rgb(238, 238, 238);
+    font-family: 'Baloo Bhaijaan 2';
+    font-size: 20px;
+    
+}
+.restex{
+    width: 75%;
+}
+@media (max-width: 750px) {
+    .restex {
+      width: 100%;
+    }
+  }
+
+.nmv{
+    visibility: visible;
+}
+@media (max-width: 750px) {
+    .nmv {
+      display: none;
+    }
+  }
+  @media (max-width: 750px) {
+    .posty{
+      width: 95%;
+    }
+  }
+
+.ok90{
+    width: 96%;
+}
+.title{
+    background-color: rgb(142, 164, 230);
+    width: 75%
+}
+
+.dejta{
+    font-style: italic;
+    width: 75%
+
+}
+.tipo{
+    color: rgb(163, 165, 179);
+}
+.tipo:hover{
+    color: rgb(112, 112, 184);
+}
+body{
+    background-color: rgb(38, 40, 41);
+}
+.carc{
+    background-color: rgba(68, 70, 68, 0.507);
+    color:rgb(220, 220, 247);
+}
+.fontp{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.pad6g6{
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+@media (max-width: 750px) {
+  .title{
+    text-align: center;
+    width: 95%;
+  }
+  .dejta{
+      width: 95%;
+      text-align: center;
+  
+  }
+  .pad6g6{
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+}
+
+
+
+
