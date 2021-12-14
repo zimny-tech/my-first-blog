@@ -34,7 +34,7 @@
               <ul>
                 {% for post in most_commented_posts %}
                   <li>
-                    <a href="{{ post.get_absolute_url }} " class=" text-muted">{{ post.title }}</a>
+                    <a href="{{ post.get_absolute_url }} " class=" text-muted text-decoration-none class">{{ post.title }}</a>
                   </li>
                 {% endfor %}
               </ul>
