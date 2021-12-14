@@ -10,7 +10,11 @@
   <p>non nisi est sit amet facilisis magna etiam tempor orci eu lobortis elementum nibh tellus molestie nunc non blandit massa enim nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus risus at ultrices</p>
 </div>
 <div class="posty">
-  <div class="title m-3 me-3 text-light rounded-3 p-1"><p class="h1 mx-3">Blog Frania</p></div>
+  <div class="title m-3 me-3 text-light rounded-3 p-1"><p class="h1 mx-3">Blog Frania</p>
+    {% if tag %}
+    <p class="h1 mx-3">Posty oznaczone tagiem "{{ tag.name }}"</p>
+  {% endif %}
+  </div>
   {% for post in posts %}
   <div class="card mb-3 mx-3 carc ok90">
     <p class="card-title h2 m-3">
