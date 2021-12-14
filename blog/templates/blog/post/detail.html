@@ -28,7 +28,7 @@
  {% endfor %}
  {% with comments.count as total_comments %}
  <h2>
-   Liczba komentarzy: {{ total_comments }} 
+   Liczba komentarzy: {{ total_comments }}
  </h2>
 {% endwith %}
 {% for comment in comments %}
@@ -38,7 +38,7 @@
      {{ comment.created }}</p>
     </div>
  <div class="card-body">
-   {{ comment.body|linebreaks }}
+   {{ comment.body|markdown }}
 </div>
 </div>
 {% empty %}
@@ -46,15 +46,15 @@
 {% endfor %}
 {% if new_comment %}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>twój komentarz został dodany</strong> 
+  <strong>twój komentarz został dodany</strong>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 </div>
  <form method="post">
   {% csrf_token %}
-  <label for="id_name">Name:</label><br> <input type="text" name="name" maxlength="80" required="" id="id_name"><br>
+  <label for="id_name">nazwa:</label><br> <input type="text" name="name" maxlength="80" required="" id="id_name"><br>
   <label for="id_email">Email:</label><br> <input type="email" name="email" maxlength="254" required="" id="id_email"><br>
-  <label for="id_body">Body:</label><br> <textarea name="body" cols="40" rows="10" required="" id="id_body"></textarea><br>
+  <label for="id_body">treść:</label><br> <textarea name="body" rows="10" cols="30" required="" id="id_body"></textarea><br>
   <input type="submit" value="Opublikuj" class="btn btn-outline-light mt-1">
 </form>
 </div>
@@ -62,9 +62,9 @@
  <h2>Dodaj nowy komentarz</h2>
  <form method="post">
   {% csrf_token %}
-  <label for="id_name">Name:</label><br> <input type="text" name="name" maxlength="80" required="" id="id_name"><br>
+  <label for="id_name">nazwa:</label><br> <input type="text" name="name" maxlength="80" required="" id="id_name"><br>
   <label for="id_email">Email:</label><br> <input type="email" name="email" maxlength="254" required="" id="id_email"><br>
-  <label for="id_body">Body:</label><br> <textarea name="body" cols="40" rows="10" required="" id="id_body"></textarea><br>
+  <label for="id_body">treść:</label><br> <textarea name="body" rows="10" cols="30" id="id_body"></textarea><br>
   <input type="submit" value="Opublikuj" class="btn btn-outline-light mt-1">
 </form>
 </div>
